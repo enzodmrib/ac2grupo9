@@ -1,13 +1,12 @@
 import { Request, Response } from 'express'
-import { InMemoryUsersRepository } from '../repositories/in-memory/in-memory-users-repository'
 import { AuthenticateUseCase } from '../use-cases/authenticate';
-import { SqliteRepository } from '../repositories/sqlite/sqlite-repository';
+import { SqliteUsersRepository } from '../repositories/sqlite/sqlite-users-repository';
 
 export async function login(req: Request, res: Response) {
   try {
     const { email, password } = req.body
 
-    const usersRepository = new SqliteRepository();
+    const usersRepository = new SqliteUsersRepository();
     const authenticateUseCase = new AuthenticateUseCase(usersRepository)
 
     const user = await authenticateUseCase.execute({ email, password })

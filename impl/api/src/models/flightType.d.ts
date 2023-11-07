@@ -1,0 +1,1 @@
+type FlightType = "OUTBOUND" | "RETURN"

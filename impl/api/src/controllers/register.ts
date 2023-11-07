@@ -1,13 +1,12 @@
 import { Request, Response } from 'express'
-import { InMemoryUsersRepository } from '../repositories/in-memory/in-memory-users-repository';
 import { RegisterUseCase } from '../use-cases/register';
-import { SqliteRepository } from '../repositories/sqlite/sqlite-repository';
+import { SqliteUsersRepository } from '../repositories/sqlite/sqlite-users-repository';
 
 export async function createUser(req: Request, res: Response) {
   try {
     const { username, email, password } = req.body;
 
-    const inMemoryUsersRepository = new SqliteRepository()
+    const inMemoryUsersRepository = new SqliteUsersRepository()
     const registerUseCase = new RegisterUseCase(inMemoryUsersRepository)
 
     await registerUseCase.execute({ username, email, password })

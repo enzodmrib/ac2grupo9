@@ -28,12 +28,11 @@ export class RegisterUseCase {
       throw new Error("Um usuário com esse email já existe.")
     }
 
-    const user = await this.usersRepository.create({
+    await this.usersRepository.create({
+      id: randomUUID(),
       username,
       email,
       password_hash
     })
-
-    return { user }
   }
 }
