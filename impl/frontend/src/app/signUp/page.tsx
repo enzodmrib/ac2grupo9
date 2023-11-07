@@ -3,16 +3,18 @@
 import { api } from "@/libs/axios"
 import { FormEvent, useRef } from "react"
 
-export default function Home() {
+export default function SignUp() {
   const emailRef = useRef<HTMLInputElement>(null)
+  const usernameRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault()
 
-    if (emailRef.current && passwordRef.current) {
+    if (usernameRef.current && emailRef.current && passwordRef.current) {
       console.log("tried")
-      api.post('/login', {
+      api.post('/user', {
+        username: usernameRef.current.value,
         email: emailRef.current.value,
         password: passwordRef.current.value
       })
@@ -27,6 +29,12 @@ export default function Home() {
       >
         <p className="text-2xl font-black">Webapp de voos</p>
         <p className="text-xl font-bold">Login</p>
+        <input
+          ref={usernameRef}
+          placeholder="username"
+          type="text"
+          className="border-2 border-zinc-700 p-4 rounded-md"
+        />
         <input
           ref={emailRef}
           placeholder="email"
