@@ -98,23 +98,23 @@ export async function initDB() {
     await db.run('INSERT INTO seat(code, booked, flight_id) values(?, ?, ?)', ['A8', false, 6])
   }
 
-  const tables = await db.all("select name from sqlite_master where type='table'");
+  // const tables = await db.all("select name from sqlite_master where type='table'");
 
-  console.log({ tables })
+  // console.log({ tables })
 
-  const users = await db.all("select * from user")
+  // const users = await db.all("select * from user")
 
-  console.log({ users })
+  // console.log({ users })
 
-  const places = await db.all('select * from place')
+  // const places = await db.all('select * from place')
 
-  console.log({ places })
+  // console.log({ places })
 
-  const flights = await db.all('select * from flight')
+  // const flights = await db.all('select * from flight')
 
-  console.log({ flights })
+  // console.log({ flights })
 
-  const seats = await db.all('select * from seat')
+  // const seats = await db.all('select * from seat')
 
-  console.log({ seats })
+  // console.log({ seats })
 }
