@@ -58,7 +58,7 @@ export default function Home() {
 
   async function fetchSeats() {
     if (flightInputRef.current) {
-      const response = await api.get(`/seats/${flightInputRef.current.value}`)
+      const response = await api.get(`/seats/flight/${flightInputRef.current.value}`)
 
       if (response.data) {
         setSeatsData(response.data.seats)
@@ -68,7 +68,7 @@ export default function Home() {
 
   async function fetchTickets() {
     if (flightInputRef.current) {
-      const response = await api.get(`/tickets/${flightInputRef.current.value}`)
+      const response = await api.get(`/tickets/flight/${flightInputRef.current.value}`)
 
       if (response.data) {
         setTicketsData(response.data.availableTickets)
