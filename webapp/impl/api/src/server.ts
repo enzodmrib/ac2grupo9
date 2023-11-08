@@ -19,7 +19,7 @@ app.use("/flightapp", routes)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
 
 
-const PORT = 3000
+const PORT = 3001
 
 app.listen(PORT, () => {
   console.log("Server running on port " + PORT)
