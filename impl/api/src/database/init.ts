@@ -103,7 +103,7 @@ export async function initDB() {
 
   const existingTicketRecords = await db.all('select * from ticket')
 
-  if(existingTicketRecords.length === 0) {
+  if (existingTicketRecords.length === 0) {
     await db.run('INSERT INTO ticket(booked, flight_id, booked_by) values(?, ?, ?)', [false, 1, null])
     await db.run('INSERT INTO ticket(booked, flight_id, booked_by) values(?, ?, ?)', [false, 1, null])
     await db.run('INSERT INTO ticket(booked, flight_id, booked_by) values(?, ?, ?)', [false, 1, null])
@@ -175,11 +175,11 @@ export async function initDB() {
 
   // console.log({ flights })
 
-  const tickets = await db.all('select * from ticket')
+  // const tickets = await db.all('select * from ticket')
 
-  console.log({ tickets })
+  // console.log({ tickets })
 
-  const seats = await db.all('select * from seat')
+  // const seats = await db.all('select * from seat')
 
-  console.log({ seats })
+  // console.log({ seats })
 }

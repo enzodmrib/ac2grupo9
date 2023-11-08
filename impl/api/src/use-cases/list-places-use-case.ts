@@ -10,7 +10,7 @@ export class ListPlacesUseCase {
   async execute() {
     const places = await this.placesRepository.findPlaces()
 
-    if(places && places.length === 0) {
+    if (places && places.length === 0) {
       throw new Error('Não foram encontrados pontos de embarque/destinos.')
     }
 

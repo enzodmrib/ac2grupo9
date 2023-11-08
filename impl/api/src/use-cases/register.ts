@@ -16,8 +16,8 @@ export class RegisterUseCase {
   }) {
     const hasRequiredFields = username && email && password
 
-    if(!hasRequiredFields) {
-      throw  Error("Não foram informados os campos necessários.")
+    if (!hasRequiredFields) {
+      throw Error("Não foram informados os campos necessários.")
     }
 
     const password_hash = await hash(password, 10)

@@ -7,18 +7,18 @@ export class CancelTicketUseCase {
     this.ticketsRepository = ticketsRepository
   }
 
-  async execute(id: number, seatId: number, userId: number) {
+  async execute(id: number) {
     const ticket = await this.ticketsRepository.findById(id)
-    
-    if(!ticket) {
+
+    if (!ticket) {
       throw new Error('Esta passagem não existe')
-    } else if(ticket && ticket.booked === 0) {
+    } else if (ticket && ticket.booked === 0) {
       throw new Error('Esta passagem já está cancelada')
     }
 
-    const canceledTicket = await this.ticketsRepository.cancelTicketById(id, seatId, userId)
+    const canceledTicket = await this.ticketsRepository.cancelTicketById(id)
 
-    if(!canceledTicket) {
+    if (!canceledTicket) {
       throw new Error('Erro ao cancelar passagem')
     }
 

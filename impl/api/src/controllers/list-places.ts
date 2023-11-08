@@ -9,7 +9,7 @@ export async function listPlaces(req, res) {
     const places = await listPlacesUseCase.execute()
 
     return res.status(200).json({ places })
-  } catch(e) {
+  } catch (e) {
     return res.status(500).json({ message: String(e) })
   }
 }

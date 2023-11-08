@@ -41,7 +41,7 @@ export class SqliteTicketsRepository implements TicketsRepository {
     const db = await openDB()
 
     const tickets = await db.all('select * from ticket where booked = true and booked_by = ?', id)
-    
+
     return tickets
   }
   async bookTicketById(id: number, seatId: number, userId: number): Promise<Ticket | null> {
@@ -55,12 +55,11 @@ export class SqliteTicketsRepository implements TicketsRepository {
 
     return ticket
   }
-  async cancelTicketById(id: number, seatId: number, userId: number): Promise<Ticket | null> {
+  async cancelTicketById(id: number): Promise<Ticket | null> {
     const db = await openDB()
 
     await db.run('update ticket set booked = false, booked_by = ? where id = ?', [null, id])
-    await db.run('update seat set ticket_id = ? where id = ?', [null, seatId])
-    // need to set ticket to this ticket
+    await db.run('update seat set ticket_id = ? where ticket_id = ?', [null, id])
 
     const ticket = await db.get('select * from ticket where id = ?', id)
 
