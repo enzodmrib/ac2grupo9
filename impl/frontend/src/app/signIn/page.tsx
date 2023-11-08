@@ -5,25 +5,31 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { FormEvent, useRef } from "react"
 
-export default function SignUp() {
+export default function Home() {
   const router = useRouter()
-
   const emailRef = useRef<HTMLInputElement>(null)
-  const usernameRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault()
 
-    if (usernameRef.current && emailRef.current && passwordRef.current) {
-      const response = await api.post('/user', {
-        username: usernameRef.current.value,
+    if (emailRef.current && passwordRef.current) {
+      console.log("tried")
+      const response = await api.post<{
+        user: {
+          id: number,
+          username: string,
+          email: string
+        }
+      }>('/login', {
         email: emailRef.current.value,
         password: passwordRef.current.value
       })
 
-      if (response.status === 201 && response.statusText === "Created") {
-        router.push('/signIn')
+      if (response) {
+        api.defaults.headers.common['user-id'] = response.data.user.id
+      
+        router.push('/')
       }
     }
   }
@@ -36,12 +42,6 @@ export default function SignUp() {
       >
         <p className="text-2xl font-black">Webapp de voos</p>
         <p className="text-xl font-bold">Login</p>
-        <input
-          ref={usernameRef}
-          placeholder="username"
-          type="text"
-          className="border-2 border-zinc-700 p-4 rounded-md"
-        />
         <input
           ref={emailRef}
           placeholder="email"
@@ -61,8 +61,8 @@ export default function SignUp() {
           Entrar
         </button>
         <div className="flex items-center gap-4">
-          <span>Ja possuí uma conta?</span>
-          <Link href="/signIn" className="text-blue-400 hover:underline">Entrar</Link>
+          <span>Não possuí conta?</span>
+          <Link href="/signUp" className="text-blue-400 hover:underline">Registrar</Link>
         </div>
       </form>
     </main>

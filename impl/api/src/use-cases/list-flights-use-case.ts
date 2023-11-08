@@ -15,7 +15,7 @@ export class ListFlightsUseCase {
     }
 
     const mappedFlights = flights.reduce((acc: any, current) => {
-      if (current.type === "OUTBOUND") {
+      if (current.type === "IDA") {
         return {
           ...acc,
           outboundFlights: [...acc.outboundFlights, current]

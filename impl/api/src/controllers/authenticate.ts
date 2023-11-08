@@ -14,6 +14,7 @@ export async function login(req: Request, res: Response) {
     if (user) {
       return res.status(200).json({
         user: {
+          id: user.id,
           username: user.username,
           email: user.email
         }

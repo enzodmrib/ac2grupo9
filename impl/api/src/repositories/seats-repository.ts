@@ -1,5 +1,5 @@
 export interface SeatsRepository {
-  getFlightSeatsByFlightId(id: number): Promise<Seat[] | null>
-  bookSeatById(id: number): Promise<Seat | null>
-  getSeatById(id: number): Promise<Seat | null>
+  findById(id: number): Promise<Seat | null>
+  findByFlightId(id: number): Promise<Seat[] | null>
+  findByTicketId(id: number): Promise<Seat | null>
 }
