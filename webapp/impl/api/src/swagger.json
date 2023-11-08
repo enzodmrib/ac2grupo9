@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "http://localhost:3000/flightapp"
+            "url": "http://localhost:3001/flightapp"
         }
     ],
     "paths": {
